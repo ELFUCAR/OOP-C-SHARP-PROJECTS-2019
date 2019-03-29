@@ -1,0 +1,114 @@
+/******************************************************************************
+Employee version 0.2
+class
+
+*******************************************************************************/
+using System;
+
+public class Program
+{
+    //------------------
+
+    class Employee
+    {
+
+        private int id;
+        private string firstName;
+        private string lastName;
+        private DateTime dateOfBirth;
+
+
+
+        public Employee() {
+            Counter++;
+        }  //default constructor
+
+
+        public Employee(int p_id, string p_firstName, string p_lastName, DateTime p_dateOfBirth)
+        {
+            id = p_id;
+            firstName = p_firstName;
+            lastName = p_lastName;
+            dateOfBirth = p_dateOfBirth;
+
+            Counter++;
+        }
+
+
+        //properties
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        public DateTime DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
+
+
+
+        private static int Counter = 0;
+        public static int CountEmployees()
+        {
+            return Counter;
+        }
+
+    }
+
+    //------------------
+
+    static void Main()
+    {
+
+        Employee e1 = new Employee(1, "John ", "Smith ", new DateTime(1992, 07, 12));
+        Employee e2 = new Employee(2, "Anna ", "Bula ", new DateTime(1998, 04, 24));
+
+
+        Employee e3 = new Employee(3, "Jennie ", "Kim ", new DateTime(1996, 01, 16));
+        Employee e4 = new Employee(4, "Jessica ", "Blue ", new DateTime(1993, 02, 22));
+
+        Employee e5 = new Employee(5, "Chen ", "Lee ", new DateTime(1992, 07, 12));
+        Employee e6 = new Employee(6, "Charles ", "Hamilton ", new DateTime(1998, 04, 24));
+
+
+        Employee e7 = new Employee(7, "Kemal ", "Atatürk ", new DateTime(1938, 11, 10));
+        Employee e8 = new Employee(8, "Mehmet ", "Ersoy ", new DateTime(1940, 08, 01));
+
+
+        Employee e9 = new Employee(9, "Elif ", "Uçar ", new DateTime(1997, 06, 30));
+        Employee e10 = new Employee(10, "Gökçe ", "Karataban ", new DateTime(1997, 06, 29));
+
+
+        Employee[] listOfEmployees = { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
+
+
+        for (int i = 0; i < listOfEmployees.Length; i++)
+        {
+            DateTime birthDate = listOfEmployees[i].DateOfBirth;
+
+            //    int age =2019 - Int32.Parse(birthDate.ToString().Substring(0, 4));
+
+
+            Console.WriteLine(listOfEmployees[i].FirstName + "" + listOfEmployees[i].LastName + "" + birthDate.ToString().Substring(0, 10));
+        }
+
+
+        e2.DateOfBirth = new DateTime(2002, 02, 14);
+
+        Console.WriteLine("We have "+ Employee.CountEmployees()+ " employees.");
+
+        Console.ReadLine();
+
+    }
+
+}
+
