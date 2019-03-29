@@ -1,0 +1,169 @@
+/******************************************************************************
+Employee version 0.3
+salary/average/promotion
+
+*******************************************************************************/
+using System;
+
+public class Program
+{
+    //------------------
+
+  public class Employee
+    {
+
+        private int id;
+        private string firstName;
+        private string lastName;
+        private DateTime dateOfBirth;
+        private double salary;
+       
+
+        public Employee() {
+            Counter++;
+        }  //default constructor
+
+
+        public Employee(int p_id, string p_firstName, string p_lastName, DateTime p_dateOfBirth, double p_salary)
+        {
+            id = p_id;
+            firstName = p_firstName;
+            lastName = p_lastName;
+            dateOfBirth = p_dateOfBirth;
+            salary = p_salary;
+
+            Counter++;
+        }
+
+
+        //properties
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        public DateTime DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
+
+        public double Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+
+
+        private static int Counter = 0;
+        public static int CountEmployees()
+        {
+            return Counter;
+        }
+
+        public double promotion (double rise)
+        {
+            return salary * (1 + rise / 100);
+        }
+
+    }//class
+
+    
+    public class Programmer: Employee
+    {
+        public Programmer (int p_id, string p_firstName, string p_lastName,DateTime p_dateOfBirth,double p_salary, string p_job)
+            : base (p_id, p_firstName, p_lastName, p_dateOfBirth,p_salary)
+        {
+            job = p_job; 
+        }
+
+        private string job;
+
+       // private member validation
+        public string Job
+
+        {
+
+            get { return job; }
+            set { job = value; }
+
+        }
+    }
+    
+    //------------------
+   static public double getAverageSalary(Employee[] list)
+    {
+        double total = 0;
+
+        for (int i = 0; i < list.Length; i++)
+        {
+
+            total = (total + list[i].Salary);
+
+        }
+
+        return total/ list.Length;
+    }
+
+   //---------
+    static void Main()
+    {
+
+        Employee e1 = new Employee(1, "John ", "Smith ", new DateTime(1992, 07, 12),1500);
+        Employee e2 = new Employee(2, "Anna ", "Bula ", new DateTime(1998, 04, 24),3000);
+
+
+        Employee e3 = new Employee(3, "Jennie ", "Kim ", new DateTime(1996, 01, 16),2550);
+        Employee e4 = new Employee(4, "Jessica ", "Blue ", new DateTime(1993, 02, 22),3570);
+
+        Employee e5 = new Employee(5, "Chen ", "Lee ", new DateTime(1992, 07, 12),2530);
+        Employee e6 = new Employee(6, "Charles ", "Hamilton ", new DateTime(1998, 04, 24),4200);
+
+
+        Employee e7 = new Employee(7, "Kemal ", "Atatürk ", new DateTime(1938, 11, 10),10000);
+        Employee e8 = new Employee(8, "Mehmet ", "Ersoy ", new DateTime(1940, 08, 01),8000);
+
+
+        Employee e9 = new Employee(9, "Elif ", "Uçar ", new DateTime(1997, 06, 30),3520);
+        Employee e10 = new Employee(10, "Gökçe ", "Karataban ", new DateTime(1997, 06, 29),5300);
+
+        e2.DateOfBirth = new DateTime(2002, 02, 14);
+
+        Programmer e11 = new Programmer(11, "Edek ", "Beker ", new DateTime(1993, 04, 24), 2650,"Java Programmer");
+        Programmer e12 = new Programmer(12, "Eda ", "Uçar ", new DateTime(200, 04, 25),3200, "Web Programmer");
+        Programmer e13 = new Programmer(13, "Enes ", "Uçar ", new DateTime(2003, 12, 25),6230,"C# Programmer");
+        Employee[] listOfEmployees = { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 ,e11 , e12, e13};
+
+        for (int i = 0; i < listOfEmployees.Length; i++)
+        {
+            DateTime birthDate = listOfEmployees[i].DateOfBirth;
+            string bd = birthDate.ToString().Substring(0, 10);
+            string fn= listOfEmployees[i].FirstName;
+            string ln= listOfEmployees[i].LastName;
+            double sal= listOfEmployees[i].Salary;
+
+            //    int age =2019 - Int32.Parse(birthDate.ToString().Substring(0, 4));
+
+            Console.WriteLine("{0,-10} {1,10} {2,12} {3,10}",fn,ln,bd,sal);
+        }
+
+
+          Console.WriteLine("\nWe have "+ Employee.CountEmployees()+ " employees.");
+          Console.WriteLine("The Average Salary is " + getAverageSalary(listOfEmployees));
+          Console.WriteLine("Before promotion: "+ e5.Salary);
+          Console.WriteLine("After promotion: " + e5.promotion(20));
+
+
+        Console.ReadLine();
+
+    }
+
+}
+
