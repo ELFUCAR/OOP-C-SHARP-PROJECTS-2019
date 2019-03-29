@@ -1,25 +1,119 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employees", "Employees\Employees.csproj", "{6DB0B70F-9C10-4C7F-88FD-BC6B215DF311}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6DB0B70F-9C10-4C7F-88FD-BC6B215DF311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DB0B70F-9C10-4C7F-88FD-BC6B215DF311}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DB0B70F-9C10-4C7F-88FD-BC6B215DF311}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DB0B70F-9C10-4C7F-88FD-BC6B215DF311}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F7B1E188-A36E-46D3-AA9C-FCBFC5F232D6}
-	EndGlobalSection
-EndGlobal
+/******************************************************************************
+Employee version 0.1
+class
+
+*******************************************************************************/
+using System;
+
+class Program
+{
+    //------------------
+
+    class Employee
+    {
+
+        private int id;
+        private string firstName;
+        private string lastName;
+        private DateTime dateOfBirth;
+
+            public string getFirstName()
+            {
+                return firstName;
+            }
+
+            public string getLastName()
+            {
+                return lastName;
+            }
+
+            public DateTime getdateOfBirth ()
+             {
+                 return dateOfBirth;
+             }
+
+
+         public Employee() { }  //default constructor
+
+
+        public Employee(int p_id, string p_firstName, string p_lastName, DateTime p_dateOfBirth)
+        {
+            id = p_id;
+            firstName = p_firstName;
+            lastName = p_lastName;
+            dateOfBirth = p_dateOfBirth;
+        }
+
+        public void updateEmployee(int p_id, string p_firstName, string p_lastName, DateTime p_dateOfBirth)
+        {
+            id = p_id;
+            firstName = p_firstName;
+            lastName = p_lastName;
+            dateOfBirth = p_dateOfBirth;
+
+        }
+
+    }
+
+
+    //------------------
+
+    static void Main()
+    {
+
+        Employee e1 = new Employee(1, "John ", "Smith ",new DateTime(1992,07,12));
+        Employee e2 = new Employee(2, "Anna ", "Bula ", new DateTime(1998,04,24));
+
+
+        Employee e3 = new Employee(3, "Jennie ", "Kim ", new DateTime(1996, 01, 16));
+        Employee e4 = new Employee(4, "Jessica ", "Blue ", new DateTime(1993, 02, 22));
+
+        Employee e5 = new Employee(5, "Chen ", "Lee ", new DateTime(1992, 07, 12));
+        Employee e6 = new Employee(6, "Charles ", "Hamilton ", new DateTime(1998, 04, 24));
+
+
+        Employee e7 = new Employee(7, "Kemal ", "Atatürk ", new DateTime(1938, 11, 10));
+        Employee e8 = new Employee(8, "Mehmet ", "Ersoy ", new DateTime(1940, 08, 01));
+
+
+        Employee e9 = new Employee(9, "Elif ", "Uçar ", new DateTime(1997, 06, 30));
+        Employee e10 = new Employee(10, "Gökçe ", "Karataban ", new DateTime(1997, 06, 29));
+
+
+        Employee[]  listOfEmployees = { e1, e2, e3, e4, e5, e6, e7, e8, e9, e10 };
+
+
+        for(int i=0; i<listOfEmployees.Length; i++)
+             {
+                 DateTime birthDate = listOfEmployees[i].getdateOfBirth();
+
+           //    int age =2019 - Int32.Parse(birthDate.ToString().Substring(0, 4));
+
+
+                Console.WriteLine(listOfEmployees[i].getFirstName() + "" + listOfEmployees[i].getLastName() + ""+birthDate.ToString().Substring(0,10));
+            }
+
+
+        e2.updateEmployee(2, "John", "Smith", new DateTime(2002, 02, 14));
+
+
+
+        for (int i = 0; i < listOfEmployees.Length; i++)
+        {
+            DateTime birthDate = listOfEmployees[i].getdateOfBirth();
+
+            //    int age =2019 - Int32.Parse(birthDate.ToString().Substring(0, 4));
+
+
+            Console.WriteLine(listOfEmployees[i].getFirstName() + "" + listOfEmployees[i].getLastName() + "" + birthDate.ToString().Substring(0, 10));
+        }
+
+
+
+
+        Console.ReadLine();
+
+    }
+    
+}
+
